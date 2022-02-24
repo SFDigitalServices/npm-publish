@@ -1,22 +1,29 @@
-name: '@primer/publish'
-description: 'Publish Primer projects to npm with GitHub Design Systems conventions'
+name: npm-publish
+description: 'Publish npm packages on every push'
+
 inputs:
   default_branch:
     description: 'Branch that releases should be cut from (usually your default branch)'
+    default: main
     required: false
   dir:
-    description: "directory to find package.json in"
+    description: 'the path to your package.json'
     required: false
   dry_run:
-    description: "run action without publishing"
+    description: 'do everything except publish'
     required: false
   npm_args:
-    description: "publish options & additional npm cli arguments"
+    description: '`npm publish` options and additional npm command line arguments'
     required: false
   release_tag:
-    description: 'Override tag to release package with'
+    description: 'the npm dist-tag'
     required: false
-    default: 'latest'
+    default: latest
+
+outputs:
+  version:
+    description: 'The version published'
+    
 runs:
   using: 'docker'
   image: 'Dockerfile'
